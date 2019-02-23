@@ -1,0 +1,69 @@
+
+:host {
+	display: block;
+	height: 100%;
+	overflow: auto;
+	background: #000;
+}
+
+.inner-box {
+	position: relative;
+}
+
+.tile-box {
+	position: absolute;
+	transition: linear 100ms;
+	
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.tile-overlay-margin {
+	position: absolute;
+	box-sizing: border-box;
+	z-index: 1000;
+	padding: 5px;
+}
+
+.tile-overlay {
+	display: block;
+	height: 100%;
+	background: #fff1;
+}
+
+.tile-content {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.tile-header {
+	position: absolute;
+	width: 100%;
+	height: 20px;
+	cursor: move;
+	z-index: 10000;
+}
+
+.tile-header:hover {
+	background: #fff2;
+}
+
+.tile-resize-handle {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	cursor: nwse-resize;
+	z-index: 10000;
+	bottom: 0;
+	right: 0;
+}
+
+.tile-resize-handle:hover {
+	background: #fff2;
+}

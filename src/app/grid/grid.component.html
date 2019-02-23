@@ -1,0 +1,64 @@
+<div class="inner-box">
+  <!-- Overlay Tiles -->
+  <ng-container *ngFor="let overlayRow of overlayTiles; let i = index">
+    <ng-container *ngFor="let overlayTile of overlayRow; let j = index">
+      <div
+        *ngIf="overlayTile==-1 || tileDragged!=-1 || tileResized!=-1"
+        class="tile-overlay-margin"
+        [ngStyle]="{
+          'left': (j / cols * 100)+'%',
+          'width': (1 / cols * 100)+'%',
+
+          'top': (i * cellHeight)+'px',
+          'height': (1 * cellHeight)+'px'
+        }"
+        (dragover)="dragOverOv($event, i, j)"
+        (dragleave)="dragLeaveOv($event, i, j);"
+        (drop)="dragDropOv($event, i, j)"
+        (click)="addTile(i, j)"
+      >
+        <div
+          class="tile-overlay"
+        >
+          
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  
+  <!-- View Component Tiles -->
+  <div
+    *ngFor="let tile of tiles; let i = index"
+    class="tile-box"
+    [ngStyle]="{
+      'left': (tile.pos.x / cols * 100)+'%',
+      'width': (tile.pos.w / cols * 100)+'%',
+
+      'top': (tile.pos.y * cellHeight)+'px',
+      'height': (tile.pos.h * cellHeight)+'px'
+    }"
+  >
+    <div style="position: relative; display: flex; flex-direction: column; height: 100%;">
+      <!-- Tile Header Bar -->
+      <div
+        class="tile-header"
+        draggable="true"
+        (dragstart)="dragHeader(i)"
+        (dragend)="dragEndHeader($event)"
+      ></div>
+
+      <!-- Tile Resize Handle -->
+      <div
+        class="tile-resize-handle"
+        draggable="true"
+        (dragstart)="dragResize(i)"
+        (dragend)="dragEndResize($event)"
+      ></div>
+  
+      <!-- Tile Content -->
+      <div style="flex-grow: 1">
+        <app-tile [viewModel]="tile.viewModel"></app-tile>
+      </div>
+    </div>
+  </div>
+</div>
